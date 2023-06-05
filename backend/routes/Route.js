@@ -1,16 +1,10 @@
 const express = require("express")
 const Food = require("../model/foodModel")
 const router = express.Router()
+const { create } = require("../controllers/controller")
 
  //Create a Food and Zipcode Entry
- router.post("/api/foods", async (req, res) => {
-    try {
-        const food = await Food.create(req.body)
-        res.status(200).json(food)
-    } catch (error) {
-        res.status(500).json({msg: error.message})
-    }
- })
+ router.post("/api/foods", create)
 
   //Read data
 router.get("/api/foods", async (req,res) => {
