@@ -1,6 +1,8 @@
 const dotenv = require("dotenv").config()
 const express = require("express")
 const connectDB = require("./config/connectDB")
+//food schema 
+const Food = require("./model/foodModel")
 
 const app = express()
 
@@ -18,8 +20,12 @@ app.get("/", (req,res) => {
  
  //Create a Task
  app.post("/api/tasks", async (req, res) => {
-    console.log(req.body)
-    res.send("Task Created")
+    try {
+        const food = await Food.create(req.body)
+        res.status(200).json(food)
+    } catch (error) {
+        res.status(500).json({msg: error.message})
+    }
  })
 
 

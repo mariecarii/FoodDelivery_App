@@ -3,14 +3,13 @@ const mongoose = require("mongoose")
 
 const foodSchema = mongoose.Schema(
     {
-        name: {
+        food_name: {
             type: String,
             required: [true, "Please add something, do not leave blank"]
         },
-        completed: {
-            type: Boolean,
+        address_zipcode: {
+            type: Number,
             required: true,
-            default: false
         }
     }, {
         timestamps: true
@@ -19,6 +18,6 @@ const foodSchema = mongoose.Schema(
 )
 
 //schema needs to be inside model
-const Food = mongoose.model("Task", foodSchema)
+const Food = mongoose.model("food_name", foodSchema)
 
 module.exports = Food
