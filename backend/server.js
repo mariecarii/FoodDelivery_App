@@ -10,11 +10,18 @@ app.get("/", (req,res) => {
     res.send("Home page")
  })
  
-//mongoDB connection
-connectDB()
 
 const PORT = process.env.port || 8000
 
-app.listen(PORT, () => {
-    console.log(`server running on port ${PORT}`)
-})
+
+const startServer = async () => {
+    try {
+        await connectDB()
+        app.listen(PORT, () => {
+            console.log(`server running on port ${PORT}`)
+        })
+    } catch (error) {
+        console.log(error)
+    }
+}
+startServer()
